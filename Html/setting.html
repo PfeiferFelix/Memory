@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Settings</title>
+</head>
+<body>
+<div class="site-layout">
+  <section class="left-side">
+    <div><img src="/images/Headline_Settings.png" alt="">
+    <div class="theme_group">
+        <div  class="theme_group_head">
+            <img class="theme_group_icon" src="/images/Icon_game_Tehemespng.png" alt="">
+            <h2 class="theme_group_title">Game themes</h2>
+        </div>
+
+        <ul class="theme_list">
+            <li>
+                <label class="theme_option">
+                    <input id="code_vibes_theme" type="radio" name="game_theme" value="code_vibes" checked>
+                    <span class="theme_option_mark"></span>
+                    <span class="theme_option_label">Code vibes theme</span>
+                </label>
+            </li>
+            <li>
+                <label class="theme_option">
+                    <input id="gaming_vibes_theme" type="radio" name="game_theme" value="gaming">
+                    <span class="theme_option_mark"></span>
+                    <span class="theme_option_label">Gaming theme</span>
+                </label>
+            </li>
+        </ul>
+    </div>
+
+        <div class="theme_group">
+        <div class="theme_group_head">
+            <img class="theme_group_icon" src="/images/chess_pawn.png" alt="">
+            <h2 class="theme_group_title">Choose player</h2>
+        </div>
+
+        <ul class="theme_list">
+            <li>
+                <label class="theme_option">
+                    <input type="radio" name="player" value="blue" checked>
+                    <span class="theme_option_mark"></span>
+                    <span class="theme_option_label">Blue</span>
+                </label>
+            </li>
+            <li>
+                <label class="theme_option">
+                    <input type="radio" name="player" value="orange">
+                    <span class="theme_option_mark"></span>
+                    <span class="theme_option_label">Orange</span>
+                </label>
+            </li>
+        </ul>
+    </div>
+            <div class="theme_group">
+        <div class="theme_group_head">
+            <img class="theme_group_icon" src="/images/board_size.png" alt="">
+            <h2 class="theme_group_title">Board size</h2>
+        </div>
+
+        <ul class="theme_list">
+            <li>
+                <label class="theme_option">
+                    <input type="radio" name="board_size" value="16" checked>
+                    <span class="theme_option_mark"></span>
+                    <span class="theme_option_label">16 cards</span>
+                </label>
+            </li>
+            <li>
+                <label class="theme_option">
+                    <input type="radio" name="board_size" value="24">
+                    <span class="theme_option_mark"></span>
+                    <span class="theme_option_label">24 cards</span>
+                </label>
+            </li>
+             <li>
+                <label class="theme_option">
+                    <input type="radio" name="board_size" value="36">
+                    <span class="theme_option_mark"></span>
+                    <span class="theme_option_label">36 cards</span>
+                </label>
+            </li>
+        </ul>
+    </div>
+</section>
+
+  <section class="right-side">
+    <img id="Theme1" class="settings_theme1_cover" src="/images/Theme1/Theme_Cover.png" alt="Code vibes theme">
+    <img id="Theme2" class="settings_theme1_cover" src="/images/Theme2.png" alt="Gaming theme">
+  </section>
+</div>
+
+<script type="module" src="/src/settings.ts"></script>
+</body>
+</html>

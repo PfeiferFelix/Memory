@@ -1,0 +1,53 @@
+body {
+    background-color: #303131;
+    margin: 0;
+}
+
+.main {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+
+    .main_content {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .main_h2 {
+        color: #fff;
+        font-size: 3rem;
+        margin: 0;
+    }
+
+    .main_h1 {
+        color: #fff;
+        font-size: 8rem;
+        margin: 0 0 2rem;
+    }
+
+    .main_button {
+        display: flex;
+        justify-content: center;
+        align-self: center;
+
+        .glow-button {
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+        }
+    }
+
+    .main_controller_img {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        z-index: 0;
+        pointer-events: none;
+    }
+}

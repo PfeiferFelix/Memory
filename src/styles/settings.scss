@@ -1,0 +1,89 @@
+$ink: #1f2023;
+$ink-muted: #3c3d40;
+$accent: #e21ac4;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+}
+
+.site-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  min-height: 100vh;
+  gap: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.left-side {
+  grid-column: 1;
+  padding: 100px 0 0 100px;
+}
+
+.right-side {
+  grid-column: 2;
+  .settings_theme1_cover {
+  margin-top: 100px;
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+}
+
+.theme_list {
+list-style: none;
+
+}
+
+.theme_group {
+  margin-top: 2.5rem;
+
+  .theme_group_head {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.theme_group_icon {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  list-style: none;
+}
+
+.theme_group_title {
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: $ink;
+  
+}
+.theme_option {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+
+  input[type="radio"] {
+    accent-color: $ink;
+  }
+
+  input[type="radio"]:checked ~ .theme_option_label {
+    font-weight: 700;
+  }
+}
+
+.theme_option_label {
+  color: $ink;
+}
+
+}
+
+
