@@ -81,8 +81,11 @@ function onCardClick(e: MouseEvent) {
         ".card",
     ) as HTMLButtonElement;
     if (card) {
+        if (card.classList.contains("is-flipped")) {
+            return;
+        }
         if (gesperrt) return;
-        card.classList.toggle("is-flipped");
+        card.classList.add("is-flipped");
         handleFlip(card);
     }
 }
@@ -93,6 +96,7 @@ function handleFlip(card: HTMLButtonElement) {
     } else if (merker.dataset.value === card.dataset.value) {
         merker = null;
         punktGeben();
+        pruefeSpielende()
     } else {
         gesperrt = true;
         rotateBack(merker, card);
@@ -143,3 +147,17 @@ function anzeigeAktualisieren() {
         spielerAnzeige.src = "/images/label_orange.png";
     }
 }
+function pruefeSpielende() {
+    if (pointsBlue + pointsOrange === auswahl.length) {
+        setTimeout(() => {
+            if (pointsBlue > pointsOrange) {
+                window.location.href = "/Html/PlayerBlueWin.html"
+            } else if (pointsOrange > pointsBlue) {
+                 window.location.href = "/Html/PlayerOrangeWin.html"
+            } else {
+                window.location.href = "/Html/Draw.html"
+            }
+        }, 300);
+    }
+}
+
