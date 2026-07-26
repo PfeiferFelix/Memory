@@ -61,6 +61,9 @@ let pointsBlue = 0;
 const orangeAnzeige = document.querySelector(".numberOrange")!;
 let pointsOrange = 0;
 let aktuellerSpieler = "blau";
+const spielerAnzeige = document.querySelector(".currentPlayerTag img") as HTMLImageElement;
+
+
 
 init();
 function init() {
@@ -70,6 +73,7 @@ function init() {
             onCardClick(e);
         });
     }
+    anzeigeAktualisieren();
 }
 
 function onCardClick(e: MouseEvent) {
@@ -121,6 +125,7 @@ function spielerWechseln() {
     } else {
         aktuellerSpieler = "blau";
     }
+    anzeigeAktualisieren();
 }
 
 function rotateBack(a: HTMLButtonElement, b: HTMLButtonElement) {
@@ -129,4 +134,12 @@ function rotateBack(a: HTMLButtonElement, b: HTMLButtonElement) {
         b.classList.remove("is-flipped");
         gesperrt = false;
     }, 800);
+}
+
+function anzeigeAktualisieren() {
+    if (aktuellerSpieler === "blau") {
+        spielerAnzeige.src = "/images/label_blue.png";
+    } else {
+        spielerAnzeige.src = "/images/label_orange.png";
+    }
 }
