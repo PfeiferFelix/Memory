@@ -1,58 +1,3 @@
-import "./styles/style.scss";
-import "./styles/code_vibes.scss";
-
-const motive = [
-    "Theme1/JS.png",
-    "Theme1/TS.png",
-    "Theme1/HTML.png",
-    "Theme1/CSS.png",
-    "Theme1/React.png",
-    "Theme1/NodeJS.png",
-    "Theme1/Git.png",
-    "Theme1/SASS.png",
-    "Theme1/Anuglar.png",
-    "Theme1/Bootstrap.png",
-    "Theme1/DB.png",
-    "Theme1/DJ.png",
-    "Theme1/Firebasepng.png",
-    "Theme1/Github.png",
-    "Theme1/Python.png",
-    "Theme1/Terminal.png",
-    "Theme1/VS_Code.png",
-    "Theme1/VueJSpng.png",
-];
-
-//Mixing Cards
-
-mixCards(motive);
-const auswahl = motive.slice(0, 8);
-let werte = [...auswahl, ...auswahl];
-mixCards(werte);
-
-function mixCards(arr: string[]) {
-    for (let i = arr.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [arr[i], arr[j]] = [arr[j], arr[i]];
-    }
-}
-
-const field = document.getElementById("field")!;
-field.innerHTML = werte
-    .map(
-        (wert) => `
-    <button class="card" data-value="${wert}">
-    <div class="card__inner">
-    <div class="card__face">
-    <img src="/images/Code vibes card background.png" alt="">
-    </div>
-    <div class="card__face card__face--back">
-    <img src="/images/${wert}" alt="${wert}">
-    </div>
-    </div>
-    </button>
-    `,
-    )
-    .join("");
 
 let merker: HTMLButtonElement | null = null; // merker für die karten
 let gesperrt = false;
@@ -61,12 +6,18 @@ let pointsBlue = 0;
 const orangeAnzeige = document.querySelector(".numberOrange")!;
 let pointsOrange = 0;
 let aktuellerSpieler = "blau";
+let gesamtPaare = 0;
 const spielerAnzeige = document.querySelector(".currentPlayerTag img") as HTMLImageElement;
 
+export function mixCards(arr: string[]) {
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+}
 
-
-init();
-function init() {
+export function init(paare: number) {
+    gesamtPaare = paare;
     const fieldRef = document.getElementById("field");
     if (fieldRef) {
         fieldRef.addEventListener("click", (e) => {
@@ -148,7 +99,7 @@ function anzeigeAktualisieren() {
     }
 }
 function pruefeSpielende() {
-    if (pointsBlue + pointsOrange === auswahl.length) {
+    if (pointsBlue + pointsOrange === gesamtPaare) {
         setTimeout(() => {
             if (pointsBlue > pointsOrange) {
                 window.location.href = "/Html/PlayerBlueWin.html"
@@ -160,4 +111,3 @@ function pruefeSpielende() {
         }, 300);
     }
 }
-
