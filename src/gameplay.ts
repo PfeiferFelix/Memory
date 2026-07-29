@@ -5,7 +5,7 @@ const blauAnzeige = document.querySelector(".numberBlue")!;
 let pointsBlue = 0;
 const orangeAnzeige = document.querySelector(".numberOrange")!;
 let pointsOrange = 0;
-let aktuellerSpieler = "blau";
+let aktuellerSpieler = sessionStorage.getItem("startPlayer") ?? "blue";
 let gesamtPaare = 0;
 const spielerAnzeige = document.querySelector(".currentPlayerTag img") as HTMLImageElement;
 
@@ -57,7 +57,7 @@ function handleFlip(card: HTMLButtonElement) {
 }
 
 function punktGeben() {
-    if (aktuellerSpieler === "blau") {
+    if (aktuellerSpieler === "blue") {
         zaehlerBlau();
     } else {
         zaehlerOrange();
@@ -75,10 +75,10 @@ function zaehlerOrange() {
 }
 
 function spielerWechseln() {
-    if (aktuellerSpieler === "blau") {
+    if (aktuellerSpieler === "blue") {
         aktuellerSpieler = "orange";
     } else {
-        aktuellerSpieler = "blau";
+        aktuellerSpieler = "blue";
     }
     anzeigeAktualisieren();
 }
@@ -92,7 +92,7 @@ function rotateBack(a: HTMLButtonElement, b: HTMLButtonElement) {
 }
 
 function anzeigeAktualisieren() {
-    if (aktuellerSpieler === "blau") {
+    if (aktuellerSpieler === "blue") {
         spielerAnzeige.src = "/images/label_blue.png";
     } else {
         spielerAnzeige.src = "/images/label_orange.png";
