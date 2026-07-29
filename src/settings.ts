@@ -4,6 +4,7 @@ let game_theme = document.getElementById('game_theme');
 let player = document.getElementById('player');
 let board = document.getElementById('board');
 
+
 function toggleImages(): void {
   const theme1 = document.getElementById('Theme1') as HTMLElement;
   const theme2 = document.getElementById('Theme2') as HTMLElement;
@@ -69,9 +70,6 @@ player_orange.addEventListener('change', toggleVisiblePlayer);
 toggleVisiblePlayer();
 
 
-
-
-
 const cards_16 = document.getElementById('16_cards') as HTMLInputElement;
 const cards_24 = document.getElementById('24_cards') as HTMLInputElement;
 const cards_32 = document.getElementById('32_cards') as HTMLInputElement;
@@ -96,3 +94,26 @@ cards_24.addEventListener('change', toggleVisibleCards);
 cards_32.addEventListener('change', toggleVisibleCards);
 
 toggleVisibleCards();
+
+
+const startGameButton = document.getElementById('start_game_btn') as HTMLButtonElement;
+
+function startGame() {
+  sessionStorage.setItem("startPlayer", player_orange.checked ? "orange" : "blue");
+  if (codeVibesRadio.checked && cards_16.checked ) {
+    window.location.href = './code_vibes_16.html';
+  } else if (codeVibesRadio.checked && cards_24.checked){
+    window.location.href = './code_vibes_24.html';
+  } else if (codeVibesRadio.checked && cards_32.checked){
+    window.location.href = './code_vibes_32.html';
+  }
+}
+
+startGameButton.addEventListener('click', startGame);
+
+function blurrStartGameButton(){
+  if (!codeVibesRadio.checked || !cards_16.checked || !cards_24.checked || !cards_32.checked || !player_orange.checked || !player_blue.checked){
+   startGameButton.blur;
+   
+  }
+}
