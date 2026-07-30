@@ -40,7 +40,7 @@ img {
 
 .theme_list {
 list-style: none;
-
+max-width: 300px;
 }
 
 .theme_group {
@@ -79,10 +79,18 @@ list-style: none;
   input[type="radio"]:checked ~ .theme_option_label {
     font-weight: 700;
   }
+
+  input[type="radio"]:checked ~ .theme_option_arrow {
+    visibility: visible;
+  }
 }
 
 .theme_option_label {
   color: $ink;
+}
+.theme_option_arrow{
+  gap: 1px;
+  visibility: hidden;
 }
 
 }
@@ -115,5 +123,6 @@ list-style: none;
     align-items: center;
   }
 }
+
 
 

@@ -74,7 +74,15 @@ header {
 
     img {
         display: block;
+        width: 207px;
         height: 62px;
+    }
+
+    &:hover img {
+        content: url("/images/Theme1/button exit/Property 1=hover.png");
+        width: 219px;
+        height: 74px;
+        margin: -6px;
     }
 }
 
