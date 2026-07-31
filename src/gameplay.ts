@@ -8,6 +8,7 @@ let pointsOrange = 0;
 let aktuellerSpieler = sessionStorage.getItem("startPlayer") ?? "blue";
 let gesamtPaare = 0;
 const spielerAnzeige = document.querySelector(".currentPlayerTag img") as HTMLImageElement;
+const spielerTag = document.querySelector(".currentPlayerTag") as HTMLElement | null;
 
 export function mixCards(arr: string[]) {
     for (let i = arr.length - 1; i > 0; i--) {
@@ -92,11 +93,13 @@ function rotateBack(a: HTMLButtonElement, b: HTMLButtonElement) {
 }
 
 function anzeigeAktualisieren() {
-    if (aktuellerSpieler === "blue") {
-        spielerAnzeige.src = "/images/label_blue.png";
-    } else {
-        spielerAnzeige.src = "/images/label_orange.png";
+    const spieler = aktuellerSpieler === "blue" ? "blue" : "orange";
+    if (spielerTag) {
+        spielerTag.dataset.player = spieler;
     }
+    // Jedes Theme kann seine eigenen Bilder per data-blue / data-orange setzen
+    spielerAnzeige.src =
+        spielerTag?.dataset[spieler] ?? `/images/label_${spieler}.png`;
 }
 function pruefeSpielende() {
     if (pointsBlue + pointsOrange === gesamtPaare) {
