@@ -53,6 +53,30 @@ field.innerHTML = werte
 
 init(auswahl.length);
 
+// Popup
+const popup = document.getElementById("popup")!;
+const openPopupButton = document.getElementById("openPopupButton")!;
+const backToGameButton = document.getElementById("backToGameButton")!;
+const exitToMenuButton = document.getElementById("exitToMenuButton")!;
+
+openPopupButton.addEventListener("click", openPopup);
+
+function openPopup() {
+    popup.classList.remove("none");
+}
+
+backToGameButton.addEventListener("click", closePopup);
+
+function closePopup() {
+    popup.classList.add("none");
+}
+
+exitToMenuButton.addEventListener("click", exitToMenu);
+
+function exitToMenu() {
+    window.location.href = "setting.html";
+}
+
 
 
 
