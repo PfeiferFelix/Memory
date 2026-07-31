@@ -106,7 +106,10 @@ function startGame() {
     window.location.href = './code_vibes_24.html';
   } else if (codeVibesRadio.checked && cards_32.checked){
     window.location.href = './code_vibes_32.html';
+  }else if (gamingVibesRadio.checked && cards_16.checked){
+    window.location.href = './gaming_vibes_16.html';
   }
+
 }
 
 startGameButton.addEventListener('click', startGame);
