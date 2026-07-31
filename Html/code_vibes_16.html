@@ -21,14 +21,26 @@
                     <img src="/images/label_blue.png" alt="" />
                 </p>
             </div>
-            <a class="exit_button"
+            <div id="openPopupButton">  <a class="exit_button"
                 ><img src="/images/exit_button.png" alt=""
-            /></a>
+            /></a></div>
+          
         </header>
 
         <section id="field"></section>
 
+        <div id="popup" class="Thumbnail none">
+            <div class="box">
+                <div class="box_head">
+                    <span id="popupTitle">Exit Game?</span>
+                </div>
 
+                <div class="box_main">
+                    <img id="backToGameButton" class="Thumbnail_Img" src="/images/Theme1/PopupBacktoGame.png" alt="Back to game">
+                    <img id="exitToMenuButton" class="Thumbnail_Img" src="/images/Theme1/button exit/Code vibes  theme.png" alt="Exit to menu">
+                </div>
+            </div>
+        </div>
 
         <script type="module" src="/src/code_vibes_16.ts"></script>
     </body>
