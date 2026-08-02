@@ -117,3 +117,58 @@ header {
         transform: rotateY(180deg);
     }
 }
+
+.Thumbnail {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+}
+
+.none {
+    display: none;
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    width: min(400px, 90vw);   // nie breiter als der Screen
+    max-height: 85vh;
+    background: #303131;
+    border: 2px solid #4ecdc4;
+    border-radius: 16px;
+    overflow: hidden;
+    
+    .box_head {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 16px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.box_main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    min-height: 0;
+    padding: 20px;
+    overflow: hidden;
+    gap: 10px;
+  
+}
+  .Thumbnail_Img{
+        cursor: pointer;
+    }
+
+}
+
