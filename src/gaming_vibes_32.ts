@@ -1,27 +1,27 @@
 import "./styles/style.scss";
-import "./styles/code_vibes.scss";
-import "./styles/code_vibes_24.scss"; // TODO: auf code_vibes_32.scss umstellen, sobald die Datei existiert
+import "./styles/gaming_vibes.scss";
+import "./styles/gaming_vibes_24.scss";
 import { mixCards, init } from "./gameplay";
 
 const motive = [
-    "Theme1/JS.png",
-    "Theme1/TS.png",
-    "Theme1/HTML.png",
-    "Theme1/CSS.png",
-    "Theme1/React.png",
-    "Theme1/NodeJS.png",
-    "Theme1/Git.png",
-    "Theme1/SASS.png",
-    "Theme1/Anuglar.png",
-    "Theme1/Bootstrap.png",
-    "Theme1/DB.png",
-    "Theme1/DJ.png",
-    "Theme1/Firebasepng.png",
-    "Theme1/Github.png",
-    "Theme1/Python.png",
-    "Theme1/Terminal.png",
-    "Theme1/VS_Code.png",
-    "Theme1/VueJSpng.png",
+    "Theme2/banana.png",
+    "Theme2/card.png",
+    "Theme2/CircleFigure.png",
+    "Theme2/Coin.png",
+    "Theme2/Controler.png",
+    "Theme2/Creeper.png",
+    "Theme2/dicepng.png",
+    "Theme2/DriangleFigure.png",
+    "Theme2/gameboy.png",
+    "Theme2/Labyrinth.png",
+    "Theme2/lvlup.png",
+    "Theme2/Pacman.png",
+    "Theme2/Pacmangold.png",
+    "Theme2/play.png",
+    "Theme2/puzzle.png",
+    "Theme2/rectangelFigure.png",
+    "Theme2/Snake.png",
+    "Theme2/Tod.png",
 ];
 
 //Mixing Cards
@@ -31,6 +31,8 @@ const auswahl = motive.slice(0, 18);
 let werte = [...auswahl, ...auswahl];
 mixCards(werte);
 
+
+
 const field = document.getElementById("field")!;
 field.innerHTML = werte
     .map(
@@ -38,7 +40,7 @@ field.innerHTML = werte
     <button class="card" data-value="${wert}">
     <div class="card__inner">
     <div class="card__face">
-    <img src="/images/Code vibes card background.png" alt="">
+    <img src="/images/Theme2/gaming_vibes_background.png" alt="">
     </div>
     <div class="card__face card__face--back">
     <img src="/images/${wert}" alt="${wert}">
@@ -57,20 +59,18 @@ const openPopupButton = document.getElementById("openPopupButton")!;
 const backToGameButton = document.getElementById("backToGameButton")!;
 const exitToMenuButton = document.getElementById("exitToMenuButton")!;
 
-openPopupButton.addEventListener("click", openPopup);
+openPopupButton.addEventListener("click",  openPopup);
 
-function openPopup() {
+function openPopup(){
     popup.classList.remove("none");
 }
 
 backToGameButton.addEventListener("click", closePopup);
-
-function closePopup() {
+function closePopup(){
     popup.classList.add("none");
 }
 
 exitToMenuButton.addEventListener("click", exitToMenu);
-
-function exitToMenu() {
+function exitToMenu(){
     window.location.href = "setting.html";
 }
