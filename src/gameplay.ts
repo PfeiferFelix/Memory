@@ -6,6 +6,7 @@ let pointsBlue = 0;
 const orangeAnzeige = document.querySelector(".numberOrange")!;
 let pointsOrange = 0;
 let aktuellerSpieler = sessionStorage.getItem("startPlayer") ?? "blue";
+const aktuellesTheme = sessionStorage.getItem("theme") ?? "code";
 let gesamtPaare = 0;
 const spielerAnzeige = document.querySelector(".currentPlayerTag img") as HTMLImageElement;
 const spielerTag = document.querySelector(".currentPlayerTag") as HTMLElement | null;
@@ -104,13 +105,31 @@ function anzeigeAktualisieren() {
 function pruefeSpielende() {
     if (pointsBlue + pointsOrange === gesamtPaare) {
         setTimeout(() => {
-            if (pointsBlue > pointsOrange) {
-                window.location.href = "/Html/PlayerBlueWin.html"
-            } else if (pointsOrange > pointsBlue) {
-                 window.location.href = "/Html/PlayerOrangeWin.html"
+            if (aktuellesTheme === "gaming") {
+                zeigeGamingSeite();
             } else {
-                window.location.href = "/Html/Draw.html"
+                zeigeCodeSeite();
             }
         }, 300);
+    }
+}
+
+function zeigeGamingSeite() {
+    if (pointsBlue > pointsOrange) {
+        window.location.href = "/Html/PlayerBlueWinGame.html"
+    } else if (pointsOrange > pointsBlue) {
+        window.location.href = "/Html/PlayerOrangeWinGame.html"
+    } else {
+        window.location.href = "/Html/DrawGame.html"
+    }
+}
+
+function zeigeCodeSeite() {
+    if (pointsBlue > pointsOrange) {
+        window.location.href = "/Html/PlayerBlueWin.html"
+    } else if (pointsOrange > pointsBlue) {
+        window.location.href = "/Html/PlayerOrangeWin.html"
+    } else {
+        window.location.href = "/Html/Draw.html"
     }
 }

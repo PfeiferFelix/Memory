@@ -100,6 +100,7 @@ const startGameButton = document.getElementById('start_game_btn') as HTMLButtonE
 
 function startGame() {
   sessionStorage.setItem("startPlayer", player_orange.checked ? "orange" : "blue");
+  sessionStorage.setItem("theme", gamingVibesRadio.checked ? "gaming" : "code");
   if (codeVibesRadio.checked && cards_16.checked ) {
     window.location.href = './code_vibes_16.html';
   } else if (codeVibesRadio.checked && cards_24.checked){
@@ -111,6 +112,9 @@ function startGame() {
   }
   else if (gamingVibesRadio.checked && cards_24.checked){
     window.location.href = './gaming_vibes_24.html';
+  }
+  else if (gamingVibesRadio.checked && cards_32.checked){
+    window.location.href = './gaming_vibes_32.html';
   }
 
 }
