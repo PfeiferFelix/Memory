@@ -1,0 +1,29 @@
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@mixin display-align{
+  display: flex;
+  align-items: center;
+}
+
+@mixin cursor-border{
+   background: none;
+    cursor: pointer;
+}
+
+@mixin reset-button {
+  padding: 0;
+  border: none;
+  @include cursor-border;
+  line-height: 0;
+}
+
+@mixin card-grid($columns, $gap) {
+  display: grid;
+  grid-template-columns: repeat($columns, 1fr);
+  gap: $gap;
+  width: fit-content;
+  margin: 40px auto;
+}

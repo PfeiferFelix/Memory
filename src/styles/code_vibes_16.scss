@@ -1,8 +1,5 @@
-#field {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); // 4 gleich breite Spalten
-    gap: 50px;                             // Abstand zwischen den Karten
-    width: fit-content;                    // Grid so breit wie nötig
-    margin: 40px auto;                     // zentriert die Fläche
-}
+@import "mixins.scss";
 
+#field {
+    @include card-grid(4, 50px);
+}

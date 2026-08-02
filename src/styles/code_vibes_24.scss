@@ -1,7 +1,5 @@
+@import "mixins.scss";
+
 #field {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr); // 6 gleich breite Spalten
-    gap: 50px;                             // Abstand zwischen den Karten
-    width: fit-content;                    // Grid so breit wie nötig
-    margin: 40px auto;                     // zentriert die Fläche
+    @include card-grid(6, 50px);
 }
