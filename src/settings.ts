@@ -109,6 +109,9 @@ function startGame() {
   }else if (gamingVibesRadio.checked && cards_16.checked){
     window.location.href = './gaming_vibes_16.html';
   }
+  else if (gamingVibesRadio.checked && cards_24.checked){
+    window.location.href = './gaming_vibes_24.html';
+  }
 
 }
 
