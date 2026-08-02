@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Gaming 24 Cards</title>
+    </head>
+    <body>
+        <header>
+            <div class="playerStats">
+                <img src="/images/Theme2/chess_pawn_orange.png" alt="Orange" />
+                <p class="numberOrange">0</p>
+                <img src="/images/Theme2/chess_pawn_blue.png" alt="Blue" />
+                <p class="numberBlue">0</p>
+            </div>
+            <div class="currentPlayer">
+                <p>Current player:</p>
+                <p
+                    class="currentPlayerTag"
+                    data-blue="/images/Theme2/chess_pawn_blue.png"
+                    data-orange="/images/Theme2/chess_pawn_orange.png"
+                >
+                    <img src="/images/Theme2/chess_pawn_blue.png" alt="" />
+                </p>
+            </div>
+            <div id="openPopupButton"><a class="exit_button"
+                ><img src="/images/Theme2/button%20exit/button%20exit/Property%201=Default.png" alt=""
+            /></a></div>
+        </header>
+
+        <section id="field"></section>
+
+        <div id="popup" class="Thumbnail none">
+            <div class="box">
+                <div class="box_head">
+                    <span id="popupTitle">Exit Game?</span>
+                </div>
+
+                <div class="box_main">
+                    <img id="backToGameButton" class="Thumbnail_Img" src="/images/Theme2/popup_backtogame.png" alt="Back to game">
+                    <img id="exitToMenuButton" class="Thumbnail_Img" src="/images/Theme2/button exit/button exit/game theme.png" alt="Exit to menu">
+                </div>
+            </div>
+        </div>
+
+        <script type="module" src="/src/gaming_vibes_24.ts"></script>
+    </body>
+</html>
