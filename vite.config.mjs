@@ -12,6 +12,7 @@ const pages = Object.fromEntries(
 )
 
 export default defineConfig({
+    base: '/Memory/',
     build: {
         rollupOptions: {
             input: {

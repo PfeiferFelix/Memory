@@ -17,10 +17,10 @@ setTimeout(() => {
 
 function showWinnerPage() {
     if (pointsBlue > pointsOrange) {
-        window.location.href = "/Html/PlayerBlueWin.html";
+        window.location.href = `${import.meta.env.BASE_URL}Html/PlayerBlueWin.html`;
     } else if (pointsOrange > pointsBlue) {
-        window.location.href = "/Html/PlayerOrangeWin.html";
+        window.location.href = `${import.meta.env.BASE_URL}Html/PlayerOrangeWin.html`;
     } else {
-        window.location.href = "/Html/Draw.html";
+        window.location.href = `${import.meta.env.BASE_URL}Html/Draw.html`;
     }
 }

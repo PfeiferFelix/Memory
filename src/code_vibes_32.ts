@@ -36,10 +36,10 @@ field.innerHTML = values
     <button class="card" data-value="${value}">
     <div class="card__inner">
     <div class="card__face">
-    <img src="/images/Code vibes card background.png" alt="">
+    <img src="${import.meta.env.BASE_URL}images/Code vibes card background.png" alt="">
     </div>
     <div class="card__face card__face--back">
-    <img src="/images/${value}" alt="${value}">
+    <img src="${import.meta.env.BASE_URL}images/${value}" alt="${value}">
     </div>
     </div>
     </button>

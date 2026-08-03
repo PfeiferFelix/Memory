@@ -10,91 +10,94 @@
 <body>
     <div class="site-layout">
         <section class="left-side">
-            <div><img class="settings_headline" src="/images/Headline_Settings.png" alt="">
-                <div class="theme_group">
-                    <div class="theme_group_head">
-                        <img class="theme_group_icon" src="/images/Icon_game_Tehemespng.png" alt="">
-                        <h2 class="theme_group_title">Game themes</h2>
-                    </div>
+            <h1 class="settings_headline">Settings</h1>
+            <div class="headline_rule" aria-hidden="true"></div>
 
-                    <ul class="theme_list">
-                        <li>
-                            <label class="theme_option">
-                                <input id="code_vibes_theme" type="radio" name="game_theme" value="code_vibes">
-                                <span class="theme_option_mark"></span>
-                                <span class="theme_option_label">Code vibes theme</span>
-                                <img class="theme_option_arrow" src="/images/Line 3.png" alt="">
-                            </label>
-                        </li>
-                        <li>
-                            <label class="theme_option">
-                                <input id="gaming_vibes_theme" type="radio" name="game_theme" value="gaming">
-                                <span class="theme_option_mark"></span>
-                                <span class="theme_option_label">Gaming theme</span>
-                                <img class="theme_option_arrow" src="/images/Line 3.png" alt="">
-                            </label>
-                        </li>
-                    </ul>
+            <div class="theme_group">
+                <div class="theme_group_head">
+                    <img class="theme_group_icon" src="/images/icon_game_themes.svg" alt="">
+                    <h2 class="theme_group_title">Game themes</h2>
                 </div>
 
-                <div class="theme_group">
-                    <div class="theme_group_head">
-                        <img class="theme_group_icon" src="/images/chess_pawn.png" alt="">
-                        <h2 class="theme_group_title">Choose player</h2>
-                    </div>
+                <ul class="theme_list">
+                    <li>
+                        <label class="theme_option" data-theme="code">
+                            <input id="code_vibes_theme" type="radio" name="game_theme" value="code_vibes">
+                            <span class="theme_option_mark"></span>
+                            <span class="theme_option_label">Code vibes theme</span>
+                            <img class="theme_option_arrow" src="/images/line_arrow.svg" alt="">
+                        </label>
+                    </li>
+                    <li>
+                        <label class="theme_option" data-theme="gaming">
+                            <input id="gaming_vibes_theme" type="radio" name="game_theme" value="gaming">
+                            <span class="theme_option_mark"></span>
+                            <span class="theme_option_label">Gaming theme</span>
+                            <img class="theme_option_arrow" src="/images/line_arrow.svg" alt="">
+                        </label>
+                    </li>
+                </ul>
+            </div>
 
-                    <ul class="theme_list">
-                        <li>
-                            <label class="theme_option">
-                                <input id="character_blue" type="radio" name="player" value="blue">
-                                <span class="theme_option_mark"></span>
-                                <span class="theme_option_label">Blue</span>
-                                <img class="theme_option_arrow" src="/images/Line 3.png" alt="">
-                            </label>
-                        </li>
-                        <li>
-                            <label class="theme_option">
-                                <input id="character_orange" type="radio" name="player" value="orange">
-                                <span class="theme_option_mark"></span>
-                                <span class="theme_option_label">Orange</span>
-                                <img class="theme_option_arrow" src="/images/Line 3.png" alt="">
-                            </label>
-                        </li>
-                    </ul>
+            <div class="theme_group">
+                <div class="theme_group_head">
+                    <img class="theme_group_icon" src="/images/icon_chess_pawn.svg" alt="">
+                    <h2 class="theme_group_title">Choose player</h2>
                 </div>
-                <div class="theme_group">
-                    <div class="theme_group_head">
-                        <img class="theme_group_icon" src="/images/board_size.png" alt="">
-                        <h2 class="theme_group_title">Board size</h2>
-                    </div>
 
-                    <ul class="theme_list">
-                        <li>
-                            <label class="theme_option">
-                                <input id="16_cards" type="radio" name="board_size" value="16">
-                                <span class="theme_option_mark"></span>
-                                <span class="theme_option_label">16 cards</span>
-                                <img class="theme_option_arrow" src="/images/Line 3.png" alt="">
-                            </label>
-                        </li>
-                        <li>
-                            <label class="theme_option">
-                                <input id="24_cards" type="radio" name="board_size" value="24">
-                                <span class="theme_option_mark"></span>
-                                <span class="theme_option_label">24 cards</span>
-                                <img class="theme_option_arrow" src="/images/Line 3.png" alt="">
-                            </label>
-                        </li>
-                        <li>
-                            <label class="theme_option">
-                                <input id="32_cards" type="radio" name="board_size" value="32">
-                                <span class="theme_option_mark"></span>
-                                <span class="theme_option_label">32 cards</span>
-                                <img class="theme_option_arrow" src="/images/Line 3.png" alt="">
-                            </label>
-                        </li>
-                    </ul>
+                <ul class="theme_list">
+                    <li>
+                        <label class="theme_option">
+                            <input id="character_blue" type="radio" name="player" value="blue">
+                            <span class="theme_option_mark"></span>
+                            <span class="theme_option_label">Blue</span>
+                            <img class="theme_option_arrow" src="/images/line_arrow.svg" alt="">
+                        </label>
+                    </li>
+                    <li>
+                        <label class="theme_option">
+                            <input id="character_orange" type="radio" name="player" value="orange">
+                            <span class="theme_option_mark"></span>
+                            <span class="theme_option_label">Orange</span>
+                            <img class="theme_option_arrow" src="/images/line_arrow.svg" alt="">
+                        </label>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="theme_group">
+                <div class="theme_group_head">
+                    <img class="theme_group_icon" src="/images/icon_board_size.svg" alt="">
+                    <h2 class="theme_group_title">Board size</h2>
                 </div>
+
+                <ul class="theme_list">
+                    <li>
+                        <label class="theme_option">
+                            <input id="16_cards" type="radio" name="board_size" value="16">
+                            <span class="theme_option_mark"></span>
+                            <span class="theme_option_label">16 cards</span>
+                            <img class="theme_option_arrow" src="/images/line_arrow.svg" alt="">
+                        </label>
+                    </li>
+                    <li>
+                        <label class="theme_option">
+                            <input id="24_cards" type="radio" name="board_size" value="24">
+                            <span class="theme_option_mark"></span>
+                            <span class="theme_option_label">24 cards</span>
+                            <img class="theme_option_arrow" src="/images/line_arrow.svg" alt="">
+                        </label>
+                    </li>
+                    <li>
+                        <label class="theme_option">
+                            <input id="32_cards" type="radio" name="board_size" value="32">
+                            <span class="theme_option_mark"></span>
+                            <span class="theme_option_label">32 cards</span>
+                            <img class="theme_option_arrow" src="/images/line_arrow.svg" alt="">
+                        </label>
+                    </li>
+                </ul>
+            </div>
         </section>
 
         <section class="right-side">

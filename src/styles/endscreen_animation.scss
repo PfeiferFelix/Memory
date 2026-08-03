@@ -1,0 +1,66 @@
+@keyframes endscreen-rise {
+    from {
+        opacity: 0;
+        transform: translateY(1.25rem);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes endscreen-drop {
+    from {
+        opacity: 0;
+        transform: translateY(-1.5rem);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes endscreen-float {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-0.45rem);
+    }
+}
+
+.confetti {
+    animation: endscreen-drop 600ms ease-out both;
+}
+
+.h2 {
+    animation: endscreen-rise 500ms ease-out 150ms both;
+}
+
+h1 {
+    animation: endscreen-rise 500ms ease-out 300ms both;
+}
+
+.PlayerIMG {
+    animation:
+        endscreen-rise 500ms ease-out 450ms both,
+        endscreen-float 5s ease-in-out 1s infinite;
+}
+
+.exit {
+    animation: endscreen-rise 500ms ease-out 650ms both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .confetti,
+    .h2,
+    h1,
+    .PlayerIMG,
+    .exit {
+        animation: none;
+    }
+}

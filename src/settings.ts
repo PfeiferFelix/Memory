@@ -5,25 +5,36 @@ let player = document.getElementById('player');
 let board = document.getElementById('board');
 
 
-function toggleImages(): void {
-  const theme1 = document.getElementById('Theme1') as HTMLElement;
-  const theme2 = document.getElementById('Theme2') as HTMLElement;
-  const codeVibes = document.getElementById('code_vibes_theme') as HTMLInputElement;
-
-  if (codeVibes.checked) {
-    theme1.style.display = 'block';
-    theme2.style.display = 'none';
-  } else {
-    theme1.style.display = 'none';
-    theme2.style.display = 'block';
-  }
-}
-
 const codeVibesRadio = document.getElementById('code_vibes_theme') as HTMLInputElement;
 const gamingVibesRadio = document.getElementById('gaming_vibes_theme') as HTMLInputElement;
 
+const theme1 = document.getElementById('Theme1') as HTMLElement;
+const theme2 = document.getElementById('Theme2') as HTMLElement;
+
+type ThemeName = 'code' | 'gaming';
+
+function showTheme(theme: ThemeName): void {
+  theme1.style.display = theme === 'code' ? 'block' : 'none';
+  theme2.style.display = theme === 'code' ? 'none' : 'block';
+}
+
+function toggleImages(): void {
+  showTheme(codeVibesRadio.checked ? 'code' : 'gaming');
+}
+
 codeVibesRadio.addEventListener('change', toggleImages);
 gamingVibesRadio.addEventListener('change', toggleImages);
+
+const themeOptions = document.querySelectorAll<HTMLElement>('.theme_option[data-theme]');
+
+themeOptions.forEach((option) => {
+  const theme = option.dataset.theme as ThemeName;
+
+  option.addEventListener('mouseenter', () => showTheme(theme));
+  option.addEventListener('mouseleave', toggleImages);
+  option.addEventListener('focusin', () => showTheme(theme));
+  option.addEventListener('focusout', toggleImages);
+});
 
 toggleImages();
 
@@ -96,27 +107,67 @@ cards_32.addEventListener('change', toggleVisibleCards);
 toggleVisibleCards();
 
 
+function restoreTheme(): void {
+  const saved = sessionStorage.getItem('theme');
+  if (saved === 'gaming') {
+    gamingVibesRadio.checked = true;
+  } else if (saved === 'code') {
+    codeVibesRadio.checked = true;
+  }
+}
+
+function restorePlayer(): void {
+  const saved = sessionStorage.getItem('startPlayer');
+  if (saved === 'orange') {
+    player_orange.checked = true;
+  } else if (saved === 'blue') {
+    player_blue.checked = true;
+  }
+}
+
+function restoreBoardSize(): void {
+  const saved = sessionStorage.getItem('boardSize');
+  if (saved === '16') {
+    cards_16.checked = true;
+  } else if (saved === '24') {
+    cards_24.checked = true;
+  } else if (saved === '32') {
+    cards_32.checked = true;
+  }
+}
+
+function restoreSelection(): void {
+  restoreTheme();
+  restorePlayer();
+  restoreBoardSize();
+
+  toggleImages();
+  toggleVisibleGameTheme();
+  toggleVisiblePlayer();
+  toggleVisibleCards();
+}
+
+restoreSelection();
+
+
 const startGameButton = document.getElementById('start_game_btn') as HTMLButtonElement;
 
-function startGame() {
+function saveSelection(theme: string, boardSize: string): void {
   sessionStorage.setItem("startPlayer", player_orange.checked ? "orange" : "blue");
-  sessionStorage.setItem("theme", gamingVibesRadio.checked ? "gaming" : "code");
-  if (codeVibesRadio.checked && cards_16.checked ) {
-    window.location.href = './code_vibes_16.html';
-  } else if (codeVibesRadio.checked && cards_24.checked){
-    window.location.href = './code_vibes_24.html';
-  } else if (codeVibesRadio.checked && cards_32.checked){
-    window.location.href = './code_vibes_32.html';
-  }else if (gamingVibesRadio.checked && cards_16.checked){
-    window.location.href = './gaming_vibes_16.html';
-  }
-  else if (gamingVibesRadio.checked && cards_24.checked){
-    window.location.href = './gaming_vibes_24.html';
-  }
-  else if (gamingVibesRadio.checked && cards_32.checked){
-    window.location.href = './gaming_vibes_32.html';
-  }
+  sessionStorage.setItem("theme", theme);
+  sessionStorage.setItem("boardSize", boardSize);
+}
 
+function startGame() {
+  const theme = codeVibesRadio.checked ? 'code' : gamingVibesRadio.checked ? 'gaming' : null;
+  const boardSize = cards_16.checked ? '16' : cards_24.checked ? '24' : cards_32.checked ? '32' : null;
+
+  if (!theme || !boardSize) return;
+
+  saveSelection(theme, boardSize);
+
+  const page = theme === 'code' ? 'code_vibes' : 'gaming_vibes';
+  window.location.href = `./${page}_${boardSize}.html`;
 }
 
 startGameButton.addEventListener('click', startGame);

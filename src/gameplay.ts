@@ -99,7 +99,7 @@ function updateDisplay() {
         playerTag.dataset.player = player;
     }
     playerDisplay.src =
-        playerTag?.dataset[player] ?? `/images/label_${player}.png`;
+        playerTag?.dataset[player] ?? `${import.meta.env.BASE_URL}images/label_${player}.png`;
 }
 function checkGameEnd() {
     if (pointsBlue + pointsOrange === totalPairs) {
@@ -116,9 +116,9 @@ function checkGameEnd() {
 }
 
 function showGamingPage() {
-    window.location.href = "/Html/GameOverGame.html"
+    window.location.href = `${import.meta.env.BASE_URL}Html/GameOverGame.html`
 }
 
 function showCodePage() {
-    window.location.href = "/Html/GameOver.html"
+    window.location.href = `${import.meta.env.BASE_URL}Html/GameOver.html`
 }
