@@ -3,7 +3,7 @@ import "./styles/gaming_vibes.scss";
 import "./styles/gaming_vibes_24.scss";
 import { mixCards, init } from "./gameplay";
 
-const motive = [
+const motifs = [
     "Theme2/banana.png",
     "Theme2/card.png",
     "Theme2/CircleFigure.png",
@@ -24,26 +24,24 @@ const motive = [
     "Theme2/Tod.png",
 ];
 
-//Mixing Cards
-
-mixCards(motive);
-const auswahl = motive.slice(0, 12);
-let werte = [...auswahl, ...auswahl];
-mixCards(werte);
+mixCards(motifs);
+const selection = motifs.slice(0, 12);
+let values = [...selection, ...selection];
+mixCards(values);
 
 
 
 const field = document.getElementById("field")!;
-field.innerHTML = werte
+field.innerHTML = values
     .map(
-        (wert) => `
-    <button class="card" data-value="${wert}">
+        (value) => `
+    <button class="card" data-value="${value}">
     <div class="card__inner">
     <div class="card__face">
     <img src="/images/Theme2/gaming_vibes_background.png" alt="">
     </div>
     <div class="card__face card__face--back">
-    <img src="/images/${wert}" alt="${wert}">
+    <img src="/images/${value}" alt="${value}">
     </div>
     </div>
     </button>
@@ -51,9 +49,8 @@ field.innerHTML = werte
     )
     .join("");
 
-init(auswahl.length);
+init(selection.length);
 
-// Popup
 const popup = document.getElementById("popup")!;
 const openPopupButton = document.getElementById("openPopupButton")!;
 const backToGameButton = document.getElementById("backToGameButton")!;

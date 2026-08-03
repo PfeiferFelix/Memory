@@ -1,15 +1,15 @@
 
-let merker: HTMLButtonElement | null = null; // merker für die karten
-let gesperrt = false;
-const blauAnzeige = document.querySelector(".numberBlue")!;
+let firstCard: HTMLButtonElement | null = null;
+let locked = false;
+const blueDisplay = document.querySelector(".numberBlue")!;
 let pointsBlue = 0;
-const orangeAnzeige = document.querySelector(".numberOrange")!;
+const orangeDisplay = document.querySelector(".numberOrange")!;
 let pointsOrange = 0;
-let aktuellerSpieler = sessionStorage.getItem("startPlayer") ?? "blue";
-const aktuellesTheme = sessionStorage.getItem("theme") ?? "code";
-let gesamtPaare = 0;
-const spielerAnzeige = document.querySelector(".currentPlayerTag img") as HTMLImageElement;
-const spielerTag = document.querySelector(".currentPlayerTag") as HTMLElement | null;
+let currentPlayer = sessionStorage.getItem("startPlayer") ?? "blue";
+const currentTheme = sessionStorage.getItem("theme") ?? "code";
+let totalPairs = 0;
+const playerDisplay = document.querySelector(".currentPlayerTag img") as HTMLImageElement;
+const playerTag = document.querySelector(".currentPlayerTag") as HTMLElement | null;
 
 export function mixCards(arr: string[]) {
     for (let i = arr.length - 1; i > 0; i--) {
@@ -18,15 +18,15 @@ export function mixCards(arr: string[]) {
     }
 }
 
-export function init(paare: number) {
-    gesamtPaare = paare;
+export function init(pairs: number) {
+    totalPairs = pairs;
     const fieldRef = document.getElementById("field");
     if (fieldRef) {
         fieldRef.addEventListener("click", (e) => {
             onCardClick(e);
         });
     }
-    anzeigeAktualisieren();
+    updateDisplay();
 }
 
 function onCardClick(e: MouseEvent) {
@@ -37,99 +37,88 @@ function onCardClick(e: MouseEvent) {
         if (card.classList.contains("is-flipped")) {
             return;
         }
-        if (gesperrt) return;
+        if (locked) return;
         card.classList.add("is-flipped");
         handleFlip(card);
     }
 }
 
 function handleFlip(card: HTMLButtonElement) {
-    if (merker === null) {
-        merker = card;
-    } else if (merker.dataset.value === card.dataset.value) {
-        merker = null;
-        punktGeben();
-        pruefeSpielende()
+    if (firstCard === null) {
+        firstCard = card;
+    } else if (firstCard.dataset.value === card.dataset.value) {
+        firstCard = null;
+        givePoint();
+        checkGameEnd()
     } else {
-        gesperrt = true;
-        rotateBack(merker, card);
-        merker = null;
-        spielerWechseln();
+        locked = true;
+        rotateBack(firstCard, card);
+        firstCard = null;
+        switchPlayer();
     }
 }
 
-function punktGeben() {
-    if (aktuellerSpieler === "blue") {
-        zaehlerBlau();
+function givePoint() {
+    if (currentPlayer === "blue") {
+        countBlue();
     } else {
-        zaehlerOrange();
+        countOrange();
     }
 }
 
-function zaehlerBlau() {
+function countBlue() {
     pointsBlue++;
-    blauAnzeige.textContent = String(pointsBlue);
+    blueDisplay.textContent = String(pointsBlue);
 }
 
-function zaehlerOrange() {
+function countOrange() {
     pointsOrange++;
-    orangeAnzeige.textContent = String(pointsOrange);
+    orangeDisplay.textContent = String(pointsOrange);
 }
 
-function spielerWechseln() {
-    if (aktuellerSpieler === "blue") {
-        aktuellerSpieler = "orange";
+function switchPlayer() {
+    if (currentPlayer === "blue") {
+        currentPlayer = "orange";
     } else {
-        aktuellerSpieler = "blue";
+        currentPlayer = "blue";
     }
-    anzeigeAktualisieren();
+    updateDisplay();
 }
 
 function rotateBack(a: HTMLButtonElement, b: HTMLButtonElement) {
     setTimeout(() => {
         a.classList.remove("is-flipped");
         b.classList.remove("is-flipped");
-        gesperrt = false;
+        locked = false;
     }, 800);
 }
 
-function anzeigeAktualisieren() {
-    const spieler = aktuellerSpieler === "blue" ? "blue" : "orange";
-    if (spielerTag) {
-        spielerTag.dataset.player = spieler;
+function updateDisplay() {
+    const player = currentPlayer === "blue" ? "blue" : "orange";
+    if (playerTag) {
+        playerTag.dataset.player = player;
     }
-    // Jedes Theme kann seine eigenen Bilder per data-blue / data-orange setzen
-    spielerAnzeige.src =
-        spielerTag?.dataset[spieler] ?? `/images/label_${spieler}.png`;
+    playerDisplay.src =
+        playerTag?.dataset[player] ?? `/images/label_${player}.png`;
 }
-function pruefeSpielende() {
-    if (pointsBlue + pointsOrange === gesamtPaare) {
+function checkGameEnd() {
+    if (pointsBlue + pointsOrange === totalPairs) {
         setTimeout(() => {
-            if (aktuellesTheme === "gaming") {
-                zeigeGamingSeite();
+            sessionStorage.setItem("pointsBlue", String(pointsBlue));
+            sessionStorage.setItem("pointsOrange", String(pointsOrange));
+            if (currentTheme === "gaming") {
+                showGamingPage();
             } else {
-                zeigeCodeSeite();
+                showCodePage();
             }
         }, 300);
     }
 }
 
-function zeigeGamingSeite() {
-    if (pointsBlue > pointsOrange) {
-        window.location.href = "/Html/PlayerBlueWinGame.html"
-    } else if (pointsOrange > pointsBlue) {
-        window.location.href = "/Html/PlayerOrangeWinGame.html"
-    } else {
-        window.location.href = "/Html/DrawGame.html"
-    }
+function showGamingPage() {
+    window.location.href = "/Html/GameOverGame.html"
 }
 
-function zeigeCodeSeite() {
-    if (pointsBlue > pointsOrange) {
-        window.location.href = "/Html/PlayerBlueWin.html"
-    } else if (pointsOrange > pointsBlue) {
-        window.location.href = "/Html/PlayerOrangeWin.html"
-    } else {
-        window.location.href = "/Html/Draw.html"
-    }
+function showCodePage() {
+    window.location.href = "/Html/GameOver.html"
 }
