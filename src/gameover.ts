@@ -1,5 +1,10 @@
+/**
+ * Game over screen of the code theme: shows the final score for a moment and
+ * then forwards to the winner (or draw) page.
+ */
 import "./styles/GameOver.scss";
 
+/** How long the final score stays on screen before forwarding, in ms. */
 const displayDuration = 2500;
 
 const pointsBlue = Number(sessionStorage.getItem("pointsBlue") ?? 0);
@@ -15,6 +20,10 @@ setTimeout(() => {
     showWinnerPage();
 }, displayDuration);
 
+/**
+ * Compares both scores and opens the matching result page:
+ * blue wins, orange wins, or a draw when both have the same amount of pairs.
+ */
 function showWinnerPage() {
     if (pointsBlue > pointsOrange) {
         window.location.href = `${import.meta.env.BASE_URL}Html/PlayerBlueWin.html`;
