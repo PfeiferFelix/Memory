@@ -7,13 +7,15 @@
 body {
     margin: 0;
     background: #303131;
-    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: $font-main;
 }
 
 header {
     @include display-align;
     justify-content: space-between;
     gap: 24px;
+    max-width: 1440px;
+    margin-inline: auto;
     padding: 20px 40px;
 
     p {

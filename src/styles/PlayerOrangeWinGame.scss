@@ -12,7 +12,7 @@ body {
     @include display-align;
     flex-direction: column;
     background: #294E61;
-    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: $font-main;
 }
 
 .confetti {

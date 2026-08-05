@@ -11,7 +11,7 @@ body {
     @include display-align;
     flex-direction: column;
     background: #303131;
-    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: $font-main;
 }
 
 header {

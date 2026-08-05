@@ -3,6 +3,7 @@
 body {
     background-color: #303131;
     margin: 0;
+    font-family: $font-main;
 }
 
 .main {
@@ -36,10 +37,36 @@ body {
         justify-content: center;
         align-self: center;
 
-        .glow-button {
+        .main_button_link {
+            position: relative;
+            display: inline-block;
             border: none;
             background-color: transparent;
+            line-height: 0;
             cursor: pointer;
+        }
+
+        .main_button_default,
+        .main_button_hover {
+            display: block;
+            transition: opacity 0.2s ease;
+        }
+
+        .main_button_hover {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .main_button_link:hover .main_button_default {
+            opacity: 0;
+        }
+
+        .main_button_link:hover .main_button_hover {
+            opacity: 1;
         }
     }
 

@@ -4,11 +4,6 @@
  * open the matching game page.
  */
 import './styles/settings.scss';
-let isVisible: boolean = false;
-let game_theme = document.getElementById('game_theme');
-let player = document.getElementById('player');
-let board = document.getElementById('board');
-
 
 const codeVibesRadio = document.getElementById('code_vibes_theme') as HTMLInputElement;
 const gamingVibesRadio = document.getElementById('gaming_vibes_theme') as HTMLInputElement;
@@ -200,28 +195,47 @@ function saveSelection(theme: string, boardSize: string): void {
 }
 
 /**
- * Reads theme and board size from the radio buttons, aborts if one of them is
- * still missing, saves the selection and opens the matching game page
+ * Reads theme and board size from the radio buttons, aborts while the
+ * selection is still incomplete, saves it and opens the matching game page
  * (e.g. code_vibes_16.html).
  */
 function startGame() {
-  const theme = codeVibesRadio.checked ? 'code' : gamingVibesRadio.checked ? 'gaming' : null;
-  const boardSize = cards_16.checked ? '16' : cards_24.checked ? '24' : cards_32.checked ? '32' : null;
-
-  if (!theme || !boardSize) return;
-
+  if (!isSelectionComplete()) return;
+  const theme = codeVibesRadio.checked ? 'code' : 'gaming';
+  const boardSize = cards_16.checked ? '16' : cards_24.checked ? '24' : '32';
   saveSelection(theme, boardSize);
-
   const page = theme === 'code' ? 'code_vibes' : 'gaming_vibes';
   window.location.href = `./${page}_${boardSize}.html`;
 }
 
 startGameButton.addEventListener('click', startGame);
 
-/** Removes the focus from the start button while the selection is incomplete. */
-function blurrStartGameButton(){
-  if (!codeVibesRadio.checked || !cards_16.checked || !cards_24.checked || !cards_32.checked || !player_orange.checked || !player_blue.checked){
-   startGameButton.blur;
+/** The radio groups that all need one checked option before the game can start. */
+const requiredGroups = ['game_theme', 'player', 'board_size'];
 
-  }
+/** True as soon as every radio group has an option checked. */
+function isSelectionComplete(): boolean {
+  return requiredGroups.every(
+    (name) => document.querySelector(`input[name="${name}"]:checked`) !== null
+  );
 }
+
+/**
+ * Shows the blurred start button image while something is still missing and
+ * swaps in the normal one once every group is picked. The button stays
+ * disabled as long as the selection is incomplete.
+ */
+function updateStartButton(): void {
+  const complete = isSelectionComplete();
+  const image = startGameButton.querySelector('img');
+  startGameButton.disabled = !complete;
+  if (!image) return;
+  const file = complete ? 'small button.png' : 'Start_Button_Blur.png';
+  image.src = `${import.meta.env.BASE_URL}images/${file}`;
+}
+
+document
+  .querySelectorAll<HTMLInputElement>('input[type="radio"]')
+  .forEach((radio) => radio.addEventListener('change', updateStartButton));
+
+updateStartButton();
