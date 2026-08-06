@@ -227,7 +227,7 @@ function isSelectionComplete(): boolean {
  */
 function updateStartButton(): void {
   const complete = isSelectionComplete();
-  const image = startGameButton.querySelector('img');
+  const image = startGameButton.querySelector<HTMLImageElement>('.start_button_default');
   startGameButton.disabled = !complete;
   if (!image) return;
   const file = complete ? 'small button.png' : 'Start_Button_Blur.png';

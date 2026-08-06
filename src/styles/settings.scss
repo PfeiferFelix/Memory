@@ -10,12 +10,12 @@ $highlight: #f0ea6e;
 }
 
 html {
-  font-size: 16px;
+  font-size: 14px;
 }
 
 @media (min-width: 1800px) {
   html {
-    font-size: 22px;
+    font-size: 19px;
   }
 }
 
@@ -223,6 +223,36 @@ gap: 0.75rem;
     @include cursor-border;
     padding: 0;
     @include display-align;
+
+    a {
+      position: relative;
+      display: inline-block;
+      line-height: 0;
+    }
+
+    img {
+      display: block;
+      transition: opacity 0.2s ease;
+    }
+
+    .start_button_hover {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    &:not(:disabled):hover {
+      .start_button_default {
+        opacity: 0;
+      }
+
+      .start_button_hover {
+        opacity: 1;
+      }
+    }
 
     &:disabled {
       cursor: not-allowed;
