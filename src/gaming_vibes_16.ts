@@ -7,6 +7,11 @@ import "./styles/gaming_vibes.scss";
 import "./styles/gaming_vibes_16.scss";
 import { mixCards, init } from "./gameplay";
 
+const popup = document.getElementById("popup")!;
+const openPopupButton = document.getElementById("openPopupButton")!;
+const backToGameButton = document.getElementById("backToGameButton")!;
+const exitToMenuButton = document.getElementById("exitToMenuButton")!;
+
 /** All card motifs available in the gaming theme. */
 const motifs = [
     "Theme2/banana.png",
@@ -29,18 +34,20 @@ const motifs = [
     "Theme2/Tod.png",
 ];
 
-// Shuffle all motifs first so every round uses a different set, take as many
-// as this board needs, then double them so each motif exists twice - and
-// shuffle again to spread the pairs over the field.
+/**
+ * Shuffle all motifs first so every round uses a different set, take as many
+ * as this board needs, then double them so each motif exists twice - and
+ * shuffle again to spread the pairs over the field.
+ */
 mixCards(motifs);
 const selection = motifs.slice(0, 8);
 let values = [...selection, ...selection];
 mixCards(values);
 
-
-
-// Renders one button per card: the front face shows the card back image, the
-// back face the motif. data-value is what the match check compares.
+/**
+ * Renders one button per card: the front face shows the card back image, the
+ * back face the motif. data-value is what the match check compares.
+ */
 const field = document.getElementById("field")!;
 field.innerHTML = values
     .map(
@@ -59,14 +66,12 @@ field.innerHTML = values
     )
     .join("");
 
-init(selection.length);
-
-const popup = document.getElementById("popup")!;
-const openPopupButton = document.getElementById("openPopupButton")!;
-const backToGameButton = document.getElementById("backToGameButton")!;
-const exitToMenuButton = document.getElementById("exitToMenuButton")!;
-
-openPopupButton.addEventListener("click",  openPopup);
+/** Wires up the three pause popup buttons. */
+function initEventListeners(): void {
+    openPopupButton.addEventListener("click", openPopup);
+    backToGameButton.addEventListener("click", closePopup);
+    exitToMenuButton.addEventListener("click", exitToMenu);
+}
 
 /** Opens the pause popup by removing the "none" class. */
 function openPopup(){
@@ -84,3 +89,6 @@ exitToMenuButton.addEventListener("click", exitToMenu);
 function exitToMenu(){
     window.location.href = "setting.html";
 }
+
+init(selection.length);
+initEventListeners();

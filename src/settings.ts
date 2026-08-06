@@ -1,18 +1,16 @@
-/**
- * Settings page: lets the player pick a theme, a starting player and a board
- * size. The selection is previewed live, stored in sessionStorage and used to
- * open the matching game page.
- */
 import './styles/settings.scss';
 
 const codeVibesRadio = document.getElementById('code_vibes_theme') as HTMLInputElement;
 const gamingVibesRadio = document.getElementById('gaming_vibes_theme') as HTMLInputElement;
-
-/** Preview image of the code theme. */
 const theme1 = document.getElementById('Theme1') as HTMLElement;
-/** Preview image of the gaming theme. */
 const theme2 = document.getElementById('Theme2') as HTMLElement;
-
+const themeOptions = document.querySelectorAll<HTMLElement>('.theme_option[data-theme]');
+const player_blue = document.getElementById('character_blue') as HTMLInputElement;
+const player_orange = document.getElementById('character_orange') as HTMLInputElement;
+const cards_16 = document.getElementById('16_cards') as HTMLInputElement;
+const cards_24 = document.getElementById('24_cards') as HTMLInputElement;
+const cards_32 = document.getElementById('32_cards') as HTMLInputElement;
+const startGameButton = document.getElementById('start_game_btn') as HTMLButtonElement;
 type ThemeName = 'code' | 'gaming';
 
 /**
@@ -32,24 +30,6 @@ function toggleImages(): void {
   showTheme(codeVibesRadio.checked ? 'code' : 'gaming');
 }
 
-codeVibesRadio.addEventListener('change', toggleImages);
-gamingVibesRadio.addEventListener('change', toggleImages);
-
-const themeOptions = document.querySelectorAll<HTMLElement>('.theme_option[data-theme]');
-
-// Hovering or focusing a theme option previews it; leaving it restores the
-// currently selected theme. focusin/focusout do the same for keyboard users.
-themeOptions.forEach((option) => {
-  const theme = option.dataset.theme as ThemeName;
-
-  option.addEventListener('mouseenter', () => showTheme(theme));
-  option.addEventListener('mouseleave', toggleImages);
-  option.addEventListener('focusin', () => showTheme(theme));
-  option.addEventListener('focusout', toggleImages);
-});
-
-toggleImages();
-
 /**
  * Writes the name of the selected theme into the label text.
  * Falls back to the generic "Game theme" when nothing is selected yet.
@@ -66,18 +46,6 @@ function toggleVisibleGameTheme() {
   }
 }
 
-codeVibesRadio.addEventListener('change', toggleVisibleGameTheme);
-gamingVibesRadio.addEventListener('change', toggleVisibleGameTheme);
-
-toggleVisibleGameTheme();
-
-
-
-
-const player_blue = document.getElementById('character_blue') as HTMLInputElement;
-const player_orange = document.getElementById('character_orange') as HTMLInputElement;
-
-
 /**
  * Writes the selected starting player into the label text.
  * Falls back to the generic "Player" when nothing is selected yet.
@@ -93,17 +61,6 @@ function toggleVisiblePlayer() {
     el.innerText = "Player";
   }
 }
-
-player_blue.addEventListener('change', toggleVisiblePlayer);
-player_orange.addEventListener('change', toggleVisiblePlayer);
-
-toggleVisiblePlayer();
-
-
-const cards_16 = document.getElementById('16_cards') as HTMLInputElement;
-const cards_24 = document.getElementById('24_cards') as HTMLInputElement;
-const cards_32 = document.getElementById('32_cards') as HTMLInputElement;
-
 
 /**
  * Writes the selected board size into the label text.
@@ -122,13 +79,6 @@ function toggleVisibleCards() {
     el.innerText = "Board size";
   }
 }
-
-cards_16.addEventListener('change', toggleVisibleCards);
-cards_24.addEventListener('change', toggleVisibleCards);
-cards_32.addEventListener('change', toggleVisibleCards);
-
-toggleVisibleCards();
-
 
 /** Re-checks the theme radio that was stored in sessionStorage. */
 function restoreTheme(): void {
@@ -171,17 +121,11 @@ function restoreSelection(): void {
   restoreTheme();
   restorePlayer();
   restoreBoardSize();
-
   toggleImages();
   toggleVisibleGameTheme();
   toggleVisiblePlayer();
   toggleVisibleCards();
 }
-
-restoreSelection();
-
-
-const startGameButton = document.getElementById('start_game_btn') as HTMLButtonElement;
 
 /**
  * Saves the current selection to sessionStorage so the game pages can read it.
@@ -208,8 +152,6 @@ function startGame() {
   window.location.href = `./${page}_${boardSize}.html`;
 }
 
-startGameButton.addEventListener('click', startGame);
-
 /** The radio groups that all need one checked option before the game can start. */
 const requiredGroups = ['game_theme', 'player', 'board_size'];
 
@@ -234,8 +176,64 @@ function updateStartButton(): void {
   image.src = `${import.meta.env.BASE_URL}images/${file}`;
 }
 
-document
-  .querySelectorAll<HTMLInputElement>('input[type="radio"]')
-  .forEach((radio) => radio.addEventListener('change', updateStartButton));
+/**
+ * Adds hover and focus listeners to one theme option so the preview image
+ * changes while the user hovers over or focuses it.
+ * @param option The theme option element carrying the data-theme attribute.
+ */
+function initThemeOption(option: HTMLElement): void {
+  const theme = option.dataset.theme as ThemeName;
+  option.addEventListener('mouseenter', () => showTheme(theme));
+  option.addEventListener('mouseleave', toggleImages);
+  option.addEventListener('focusin', () => showTheme(theme));
+  option.addEventListener('focusout', toggleImages);
+}
 
-updateStartButton();
+/** Wires the theme radios and the hover preview of every theme option. */
+function initThemeListeners(): void {
+  codeVibesRadio.addEventListener('change', toggleImages);
+  gamingVibesRadio.addEventListener('change', toggleImages);
+  codeVibesRadio.addEventListener('change', toggleVisibleGameTheme);
+  gamingVibesRadio.addEventListener('change', toggleVisibleGameTheme);
+  themeOptions.forEach(initThemeOption);
+}
+
+/** Wires the starting player radios. */
+function initPlayerListeners(): void {
+  player_blue.addEventListener('change', toggleVisiblePlayer);
+  player_orange.addEventListener('change', toggleVisiblePlayer);
+}
+
+/** Wires the board size radios. */
+function initBoardListeners(): void {
+  cards_16.addEventListener('change', toggleVisibleCards);
+  cards_24.addEventListener('change', toggleVisibleCards);
+  cards_32.addEventListener('change', toggleVisibleCards);
+}
+
+/**
+ * Wires the start button and keeps its enabled state in sync with every
+ * radio group on the page.
+ */
+function initStartButton(): void {
+  startGameButton.addEventListener('click', startGame);
+  document
+    .querySelectorAll<HTMLInputElement>('input[type="radio"]')
+    .forEach((radio) => radio.addEventListener('change', updateStartButton));
+}
+
+/**
+ * Single entry point of the settings page: registers every listener, restores
+ * the previous selection and brings the start button in sync with it.
+ */
+function init(): void {
+  initThemeListeners();
+  initPlayerListeners();
+  initBoardListeners();
+  initStartButton();
+  restoreSelection();
+  updateStartButton();
+}
+
+init();
+
