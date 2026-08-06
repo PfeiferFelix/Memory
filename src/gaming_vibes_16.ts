@@ -74,20 +74,18 @@ function initEventListeners(): void {
 }
 
 /** Opens the pause popup by removing the "none" class. */
-function openPopup(){
+function openPopup() {
     popup.classList.remove("none");
 }
 
-backToGameButton.addEventListener("click", closePopup);
 /** Closes the pause popup and returns to the running game. */
-function closePopup(){
+function closePopup() {
     popup.classList.add("none");
 }
 
-exitToMenuButton.addEventListener("click", exitToMenu);
 /** Leaves the running game and goes back to the settings page. */
-function exitToMenu(){
-    window.location.href = "setting.html";
+function exitToMenu() {
+    window.location.href = "settings.html";
 }
 
 init(selection.length);

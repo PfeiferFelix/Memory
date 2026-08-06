@@ -3,7 +3,7 @@ import { readdirSync } from 'node:fs'
 import { resolve } from 'node:path'
 
 const root = import.meta.dirname
-const htmlDir = resolve(root, 'Html')
+const htmlDir = resolve(root, 'html')
 
 const pages = Object.fromEntries(
     readdirSync(htmlDir)

@@ -5,20 +5,16 @@
 
 /** The first card flipped in the current turn, or null if none is open. */
 let firstCard: HTMLButtonElement | null = null;
-/** Blocks clicks while two non-matching cards are still flipping back. */
 let locked = false;
-const blueDisplay = document.querySelector(".numberBlue")!;
 let pointsBlue = 0;
-const orangeDisplay = document.querySelector(".numberOrange")!;
 let pointsOrange = 0;
-/** Starting player comes from the settings page, defaults to blue. */
 let currentPlayer = sessionStorage.getItem("startPlayer") ?? "blue";
-/** The theme decides which game over page is loaded at the end. */
-const currentTheme = sessionStorage.getItem("theme") ?? "code";
-/** Number of pairs in the current game - set by init(). */
 let totalPairs = 0;
-const playerDisplay = document.querySelector(".currentPlayerTag img") as HTMLImageElement;
-const playerTag = document.querySelector(".currentPlayerTag") as HTMLElement | null;
+let blueDisplay = document.querySelector(".numberBlue")!;
+let orangeDisplay = document.querySelector(".numberOrange")!;
+let currentTheme = sessionStorage.getItem("theme") ?? "code";
+let playerDisplay = document.querySelector(".currentPlayerTag img") as HTMLImageElement;
+let playerTag = document.querySelector(".currentPlayerTag") as HTMLElement | null;
 
 /**
  * Shuffles an array randomly, in place (Fisher-Yates shuffle).
@@ -174,10 +170,10 @@ function checkGameEnd() {
 
 /** Redirects to the game over page of the gaming theme. */
 function showGamingPage() {
-    window.location.href = `${import.meta.env.BASE_URL}Html/GameOverGame.html`
+    window.location.href = `${import.meta.env.BASE_URL}html/game-over-gaming.html`
 }
 
 /** Redirects to the game over page of the code theme. */
 function showCodePage() {
-    window.location.href = `${import.meta.env.BASE_URL}Html/GameOver.html`
+    window.location.href = `${import.meta.env.BASE_URL}html/game-over-code.html`
 }

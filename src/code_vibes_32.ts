@@ -66,6 +66,7 @@ field.innerHTML = values
     `,
     )
     .join("");
+
 /** Wires up the three pause popup buttons. */
 function initEventListeners(): void {
     openPopupButton.addEventListener("click", openPopup);
@@ -78,18 +79,14 @@ function openPopup() {
     popup.classList.remove("none");
 }
 
-backToGameButton.addEventListener("click", closePopup);
-
 /** Closes the pause popup and returns to the running game. */
 function closePopup() {
     popup.classList.add("none");
 }
 
-exitToMenuButton.addEventListener("click", exitToMenu);
-
 /** Leaves the running game and goes back to the settings page. */
 function exitToMenu() {
-    window.location.href = "setting.html";
+    window.location.href = "settings.html";
 }
 
 init(selection.length);

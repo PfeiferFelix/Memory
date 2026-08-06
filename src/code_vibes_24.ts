@@ -85,7 +85,7 @@ function closePopup() {
 
 /** Leaves the running game and goes back to the settings page. */
 function exitToMenu() {
-    window.location.href = "setting.html";
+    window.location.href = "settings.html";
 }
 
 init(selection.length);

@@ -141,15 +141,14 @@ function saveSelection(theme: string, boardSize: string): void {
 /**
  * Reads theme and board size from the radio buttons, aborts while the
  * selection is still incomplete, saves it and opens the matching game page
- * (e.g. code_vibes_16.html).
+ * (e.g. board-code-16.html).
  */
 function startGame() {
   if (!isSelectionComplete()) return;
   const theme = codeVibesRadio.checked ? 'code' : 'gaming';
   const boardSize = cards_16.checked ? '16' : cards_24.checked ? '24' : '32';
   saveSelection(theme, boardSize);
-  const page = theme === 'code' ? 'code_vibes' : 'gaming_vibes';
-  window.location.href = `./${page}_${boardSize}.html`;
+  window.location.href = `./board-${theme}-${boardSize}.html`;
 }
 
 /** The radio groups that all need one checked option before the game can start. */
