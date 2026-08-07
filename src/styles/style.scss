@@ -1,7 +1,8 @@
 @import "mixins.scss";
+@import "swap_button.scss";
 
 body {
-    background-color: #303131;
+    background-color: $color-bg-code;
     margin: 0;
     font-family: $font-main;
 }
@@ -12,7 +13,7 @@ body {
     height: 100vh;
     overflow: hidden;
 
-    .main_content {
+    &__content {
         position: relative;
         z-index: 1;
         display: flex;
@@ -20,57 +21,29 @@ body {
         align-items: flex-start;
     }
 
-    .main_h2 {
-        color: #fff;
+    &__subtitle {
+        color: $color-white;
         font-size: 3rem;
         margin: 0;
     }
 
-    .main_h1 {
-        color: #fff;
+    &__title {
+        color: $color-white;
         font-size: 8rem;
         margin: 0 0 2rem;
     }
 
-    .main_button {
+    &__button {
         display: flex;
         justify-content: center;
         align-self: center;
 
-        .main_button_link {
-            position: relative;
-            display: inline-block;
-            border: none;
-            background-color: transparent;
-            line-height: 0;
-            cursor: pointer;
-        }
-
-        .main_button_default,
-        .main_button_hover {
-            display: block;
-            transition: opacity 0.2s ease;
-        }
-
-        .main_button_hover {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .main_button_link:hover .main_button_default {
-            opacity: 0;
-        }
-
-        .main_button_link:hover .main_button_hover {
-            opacity: 1;
+        .swap-button:hover {
+            @include swap-button-swapped;
         }
     }
 
-    .main_controller_img {
+    &__controller {
         position: absolute;
         left: 0;
         bottom: 0;

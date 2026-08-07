@@ -1,0 +1,78 @@
+@import "mixins.scss";
+@import "button-glow.scss";
+@import "endscreen-animation.scss";
+
+* {
+    box-sizing: border-box;
+}
+
+.endscreen {
+    margin: 0;
+    min-height: 100vh;
+    @include display-align;
+    flex-direction: column;
+    font-family: $font-main;
+
+    &__header {
+        width: 100%;
+    }
+
+    &__confetti {
+        display: block;
+        width: 100%;
+        height: $endscreen-confetti-height;
+        object-fit: cover;
+    }
+
+    &__subtitle {
+        @include flex-center;
+        margin-top: auto;
+        font-size: $endscreen-subtitle-size;
+        color: $color-white;
+
+        h2 {
+            margin: 0;
+        }
+    }
+
+    &__title {
+        @include flex-center;
+        font-size: $endscreen-title-size;
+        margin: 8px 0 24px;
+    }
+
+    &__player {
+        @include flex-center;
+
+        img {
+            max-height: $endscreen-player-height;
+            width: auto;
+        }
+    }
+
+    &__exit {
+        @include flex-center;
+        margin-top: 32px;
+        margin-bottom: auto;
+    }
+}
+
+.exit-button {
+    @include reset-button;
+    @include flex-center;
+
+    img {
+        display: block;
+        height: $exit-button-height;
+    }
+}
+
+@mixin endscreen-theme($background, $title-color) {
+    .endscreen {
+        background: $background;
+    }
+
+    .endscreen__title {
+        color: $title-color;
+    }
+}

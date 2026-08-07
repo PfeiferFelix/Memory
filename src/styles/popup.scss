@@ -1,0 +1,48 @@
+@import "mixins.scss";
+
+.popup {
+    position: fixed;
+    inset: 0;
+    @include flex-center;
+    padding: 16px;
+    background: $color-overlay;
+    z-index: 1000;
+
+    &--hidden {
+        display: none;
+    }
+
+    &__box {
+        display: flex;
+        flex-direction: column;
+        width: $popup-width;
+        max-height: 85vh;
+        background: $color-bg-code;
+        border: 2px solid $color-teal;
+        border-radius: $popup-radius;
+        overflow: hidden;
+    }
+
+    &__head {
+        @include flex-center;
+        gap: 16px;
+        padding: 16px 20px;
+        border-bottom: 1px solid $color-border-light;
+        color: $color-white;
+        font-size: 20px;
+        font-weight: 700;
+    }
+
+    &__body {
+        @include flex-center;
+        flex: 1;
+        min-height: 0;
+        padding: 20px;
+        overflow: hidden;
+        gap: 10px;
+    }
+
+    &__action {
+        cursor: pointer;
+    }
+}

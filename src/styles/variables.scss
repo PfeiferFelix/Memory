@@ -1,0 +1,43 @@
+// Surfaces
+$color-bg-code: #303131;
+$color-bg-gaming: #1f4c58;
+$color-bg-gaming-endscreen: #294e61;
+$color-bg-gaming-header: #4f5d75;
+$color-bg-settings-summary: #f6f6f6;
+
+// Neutrals
+$color-white: #ffffff;
+$color-ink: #1f2023;
+
+// Player colours
+$color-blue-code: #30b1ff;
+$color-blue-gaming: #1e9bf0;
+$color-blue-win: #2bb1ff;
+$color-orange: #f48e39;
+
+// Accents
+$color-teal: #4ecdc4;
+$color-accent: #e21ac4;
+$color-highlight: #f0ea6e;
+$color-draw-code: #4dd5bc;
+$color-draw-gaming: #ed1b76;
+$color-gameover-gaming: #ec2f63;
+
+// Translucent layers
+$color-overlay: rgba(0, 0, 0, 0.6);
+$color-border-light: rgba(255, 255, 255, 0.12);
+$color-surface-light: rgba(255, 255, 255, 0.06);
+
+// Typography
+$font-main: "Red Rose", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+// Popup, shared by both board themes
+$popup-radius: 16px;
+$popup-width: min(400px, 90vw);
+
+// Endscreen sizes, shared by the win/draw pages of both themes
+$exit-button-height: 62px;
+$endscreen-title-size: 70px;
+$endscreen-subtitle-size: 20px;
+$endscreen-confetti-height: 22vh;
+$endscreen-player-height: 28vh;

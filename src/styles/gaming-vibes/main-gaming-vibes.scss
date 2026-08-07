@@ -1,0 +1,109 @@
+@import "../mixins.scss";
+@import "../card.scss";
+@import "../popup.scss";
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: $color-bg-gaming;
+    font-family: $font-main;
+}
+
+header {
+    @include display-align;
+    justify-content: space-between;
+    gap: 24px;
+    width: min(1440px, calc(100% - 48px));
+    margin: 24px auto;
+    padding: 12px 16px;
+    background: $color-bg-gaming-header;
+    border-radius: 12px;
+
+    p {
+        margin: 0;
+    }
+}
+
+.player-stats {
+    height: 48px;
+    @include display-align;
+    gap: 8px;
+    padding: 0 16px;
+    background: $color-white;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 24px;
+
+    img {
+        display: block;
+        width: auto;
+        height: 26px;
+    }
+
+    &__score--blue {
+        color: $color-blue-gaming;
+    }
+
+    &__score--orange {
+        color: $color-orange;
+        margin-right: 12px;
+    }
+}
+
+.current-player {
+    @include display-align;
+    gap: 12px;
+    color: $color-white;
+    font-size: 24px;
+    font-weight: 700;
+
+    &__tag {
+        @include flex-center;
+        width: 34px;
+        height: 34px;
+        border-radius: 6px;
+        background: $color-blue-gaming;
+
+        &[data-player="orange"] {
+            background: $color-orange;
+        }
+
+        img {
+            display: block;
+            width: auto;
+            height: 22px;
+            filter: brightness(0) invert(1);
+        }
+    }
+}
+
+.exit-button {
+    @include reset-button;
+
+    img {
+        display: block;
+        width: 195px;
+        height: 54px;
+    }
+
+    &:hover img {
+        content: url("/images/Theme2/button%20exit/button%20exit/Property%201=hover.png");
+        width: 205px;
+        height: 64px;
+        margin: -5px;
+    }
+}
+
+.card {
+    height: 145px;
+
+    &__face img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+}

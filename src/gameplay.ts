@@ -10,11 +10,11 @@ let pointsBlue = 0;
 let pointsOrange = 0;
 let currentPlayer = sessionStorage.getItem("startPlayer") ?? "blue";
 let totalPairs = 0;
-let blueDisplay = document.querySelector(".numberBlue")!;
-let orangeDisplay = document.querySelector(".numberOrange")!;
+let blueDisplay = document.querySelector(".player-stats__score--blue")!;
+let orangeDisplay = document.querySelector(".player-stats__score--orange")!;
 let currentTheme = sessionStorage.getItem("theme") ?? "code";
-let playerDisplay = document.querySelector(".currentPlayerTag img") as HTMLImageElement;
-let playerTag = document.querySelector(".currentPlayerTag") as HTMLElement | null;
+let playerDisplay = document.querySelector(".current-player__tag img") as HTMLImageElement;
+let playerTag = document.querySelector(".current-player__tag") as HTMLElement | null;
 
 /**
  * Shuffles an array randomly, in place (Fisher-Yates shuffle).
@@ -57,11 +57,11 @@ function onCardClick(e: MouseEvent) {
         ".card",
     ) as HTMLButtonElement;
     if (card) {
-        if (card.classList.contains("is-flipped")) {
+        if (card.classList.contains("card--flipped")) {
             return;
         }
         if (locked) return;
-        card.classList.add("is-flipped");
+        card.classList.add("card--flipped");
         handleFlip(card);
     }
 }
@@ -128,8 +128,8 @@ function switchPlayer() {
  */
 function rotateBack(a: HTMLButtonElement, b: HTMLButtonElement) {
     setTimeout(() => {
-        a.classList.remove("is-flipped");
-        b.classList.remove("is-flipped");
+        a.classList.remove("card--flipped");
+        b.classList.remove("card--flipped");
         locked = false;
     }, 800);
 }

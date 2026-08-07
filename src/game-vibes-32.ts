@@ -1,10 +1,11 @@
 /**
- * Gaming theme board with 16 cards: picks 8 motifs, doubles and shuffles them,
- * renders the playing field and wires up the pause popup.
+ * Gaming theme board with 32 cards (well, 36 - 18 motifs are used): picks the
+ * motifs, doubles and shuffles them, renders the playing field and wires up
+ * the pause popup.
  */
 import "./styles/style.scss";
-import "./styles/gaming_vibes.scss";
-import "./styles/gaming_vibes_16.scss";
+import "./styles/gaming-vibes/main-gaming-vibes.scss";
+import "./styles/gaming-vibes/game-vibes-24.scss";
 import { mixCards, init } from "./gameplay";
 
 const popup = document.getElementById("popup")!;
@@ -40,7 +41,7 @@ const motifs = [
  * shuffle again to spread the pairs over the field.
  */
 mixCards(motifs);
-const selection = motifs.slice(0, 8);
+const selection = motifs.slice(0, 18);
 let values = [...selection, ...selection];
 mixCards(values);
 
@@ -54,13 +55,13 @@ field.innerHTML = values
         (value) => `
     <button class="card" data-value="${value}">
     <div class="card__inner">
-    <div class="card__face">
-    <img src="${import.meta.env.BASE_URL}images/Theme2/gaming_vibes_background.png" alt="">
-    </div>
-    <div class="card__face card__face--back">
-    <img src="${import.meta.env.BASE_URL}images/${value}" alt="${value}">
-    </div>
-    </div>
+            <div class="card__face">
+                <img src="${import.meta.env.BASE_URL}images/Theme2/gaming_vibes_background.png" alt="">
+            </div>
+            <div class="card__face card__face--back">
+                <img src="${import.meta.env.BASE_URL}images/${value}" alt="${value}">
+            </div>
+            </div>
     </button>
     `,
     )
@@ -73,14 +74,14 @@ function initEventListeners(): void {
     exitToMenuButton.addEventListener("click", exitToMenu);
 }
 
-/** Opens the pause popup by removing the "none" class. */
+/** Opens the pause popup by removing the "popup--hidden" class. */
 function openPopup() {
-    popup.classList.remove("none");
+    popup.classList.remove("popup--hidden");
 }
 
 /** Closes the pause popup and returns to the running game. */
 function closePopup() {
-    popup.classList.add("none");
+    popup.classList.add("popup--hidden");
 }
 
 /** Leaves the running game and goes back to the settings page. */

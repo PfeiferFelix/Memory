@@ -1,0 +1,97 @@
+@import "../mixins.scss";
+@import "../card.scss";
+@import "../popup.scss";
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: $color-bg-code;
+    font-family: $font-main;
+}
+
+header {
+    @include display-align;
+    justify-content: space-between;
+    gap: 24px;
+    max-width: 1440px;
+    margin-inline: auto;
+    padding: 20px 40px;
+
+    p {
+        margin: 0;
+    }
+}
+
+.player-stats {
+    height: 62px;
+    @include display-align;
+    gap: 8px;
+    padding: 0 20px;
+    background: $color-surface-light;
+    border-radius: 12px;
+    font-weight: 700;
+
+    img {
+        width: 24px;
+        height: 20px;
+    }
+
+    &__name--blue,
+    &__score--blue {
+        color: $color-blue-code;
+    }
+
+    &__name--orange,
+    &__score--orange {
+        color: $color-orange;
+    }
+
+    &__score--blue {
+        margin-right: 12px;
+    }
+}
+
+.current-player {
+    @include display-align;
+    gap: 10px;
+    color: $color-white;
+    font-size: 20px;
+
+    img {
+        display: block;
+        width: 24px;
+        height: 20px;
+    }
+}
+
+.exit-button {
+    @include reset-button;
+
+    img {
+        display: block;
+        width: 207px;
+        height: $exit-button-height;
+    }
+
+    &:hover img {
+        content: url("/images/Theme1/button exit/Property 1=hover.png");
+        width: 219px;
+        height: 74px;
+        margin: -6px;
+    }
+}
+
+.card {
+    height: 100px;
+
+    &__face {
+        background-color: black;
+    }
+
+    &__face--back {
+        background-color: red;
+    }
+}

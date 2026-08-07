@@ -1,0 +1,34 @@
+@import "main-gaming-vibes.scss";
+
+body {
+    min-height: 100vh;
+    @include flex-center;
+    background: $color-bg-gaming-endscreen;
+}
+
+.game-over {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding: 20px;
+
+    p {
+        margin: 0;
+    }
+
+    &__title {
+        margin: 0 0 44px;
+        font-size: clamp(2.5rem, 9vw, 5.5rem);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: $color-gameover-gaming;
+    }
+
+    &__subtitle {
+        color: $color-white;
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+    }
+}

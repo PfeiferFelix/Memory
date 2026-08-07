@@ -4,7 +4,7 @@ const codeVibesRadio = document.getElementById('code_vibes_theme') as HTMLInputE
 const gamingVibesRadio = document.getElementById('gaming_vibes_theme') as HTMLInputElement;
 const theme1 = document.getElementById('Theme1') as HTMLElement;
 const theme2 = document.getElementById('Theme2') as HTMLElement;
-const themeOptions = document.querySelectorAll<HTMLElement>('.theme_option[data-theme]');
+const themeOptions = document.querySelectorAll<HTMLElement>('.theme-option[data-theme]');
 const player_blue = document.getElementById('character_blue') as HTMLInputElement;
 const player_orange = document.getElementById('character_orange') as HTMLInputElement;
 const cards_16 = document.getElementById('16_cards') as HTMLInputElement;
@@ -168,7 +168,7 @@ function isSelectionComplete(): boolean {
  */
 function updateStartButton(): void {
   const complete = isSelectionComplete();
-  const image = startGameButton.querySelector<HTMLImageElement>('.start_button_default');
+  const image = startGameButton.querySelector<HTMLImageElement>('.swap-button__default');
   startGameButton.disabled = !complete;
   if (!image) return;
   const file = complete ? 'small button.png' : 'Start_Button_Blur.png';

@@ -11,22 +11,22 @@
     </head>
     <body>
         <header>
-            <div class="playerStats">
+            <div class="player-stats">
                 <img src="/images/label_blue.png" alt="" />
-                <p class="playerBlue">Blue</p>
-                <p class="numberBlue">0</p>
+                <p class="player-stats__name--blue">Blue</p>
+                <p class="player-stats__score--blue">0</p>
                 <img src="/images/label_orange.png" alt="" />
-                <p class="playerOrange">Orange</p>
-                <p class="numberOrange">0</p>
+                <p class="player-stats__name--orange">Orange</p>
+                <p class="player-stats__score--orange">0</p>
             </div>
-            <div class="currentPlayer">
+            <div class="current-player">
                 <p>Current player:</p>
-                <p class="currentPlayerTag">
+                <p class="current-player__tag">
                     <img src="/images/label_blue.png" alt="" />
                 </p>
             </div>
             <div id="openPopupButton">
-                <a class="exit_button"
+                <a class="exit-button"
                     ><img src="/images/exit_button.png" alt=""
                 /></a>
             </div>
@@ -34,19 +34,19 @@
 
         <section id="field"></section>
 
-        <div id="popup" class="Thumbnail none">
-            <div class="box">
-                <div class="box_head">
+        <div id="popup" class="popup popup--hidden">
+            <div class="popup__box">
+                <div class="popup__head">
                     <span id="popupTitle">Exit Game?</span>
                 </div>
 
-                <div class="box_main">
-                    <img id="backToGameButton" class="Thumbnail_Img" src="/images/Theme1/PopupBacktoGame.png" alt="Back to game">
-                    <img id="exitToMenuButton" class="Thumbnail_Img" src="/images/Theme1/button exit/Code vibes  theme.png" alt="Exit to menu">
+                <div class="popup__body">
+                    <img id="backToGameButton" class="popup__action" src="/images/Theme1/PopupBacktoGame.png" alt="Back to game">
+                    <img id="exitToMenuButton" class="popup__action" src="/images/Theme1/button exit/Code vibes  theme.png" alt="Exit to menu">
                 </div>
             </div>
         </div>
 
-        <script type="module" src="/src/code_vibes_32.ts"></script>
+        <script type="module" src="/src/code-vibes-32.ts"></script>
     </body>
 </html>
